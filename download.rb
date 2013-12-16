@@ -26,7 +26,8 @@ feed.entries.reverse.each do |entry|
   num = match[1].to_i
   title = match[2]
 
-  path = File.join(OUTPUT_DIR, "%03d %s.mp4" % [num, title])
+  # Strip / out of filename.
+  path = File.join(OUTPUT_DIR, "%03d %s.mp4" % [num, title.gsub("\/", '_')])
 
   if File.exists?(path)
     puts "Skipping #{entry.title}"
